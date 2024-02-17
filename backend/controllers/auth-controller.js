@@ -26,7 +26,8 @@ const register = async (req,res) =>{
         });
     } 
     catch (error) {
-        res.status(400).send({msg:"register page not found"});
+        // res.status(400).send({msg:"register page not found"});
+        next(error)
     }
 }
 const login = async (req,res) =>{
@@ -43,7 +44,7 @@ const login = async (req,res) =>{
             userId: checkEmail._id.toString()
         })}
         else{
-            res.status(400).send({msg:"Invalid Credentials"});
+            res.status(400).send({msg:"Invalid Credentials"});  
         }
 
     } 

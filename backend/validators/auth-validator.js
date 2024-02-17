@@ -1,5 +1,19 @@
 const {z} = require("zod");
 // schema
+
+const loginSchema = z.object({
+    email:z
+    .string({required_error:"Email is Required"})
+    .trim()
+    .email({message:"Invalid Email"})
+    .max(255,{message:"Email must not be more than 255 characters"}),
+    password:z
+    .string({required_error:"Name is Required"})
+    .trim()
+    .min(3,{message:"Password must be at least of 3 characters"})
+    .max(255,{message:"Password must not be more than 255 characters"})   
+})
+
 const registerSchema = z.object({
     username: z
     .string({required_error:"Name is Required"})
@@ -22,4 +36,4 @@ const registerSchema = z.object({
     .max(255,{message:"Password must not be more than 255 characters"})   
 });
 
-module.exports=registerSchema;
+module.exports={registerSchema,loginSchema};
