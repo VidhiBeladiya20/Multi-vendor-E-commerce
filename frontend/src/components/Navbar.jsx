@@ -12,7 +12,7 @@ export const Navbar = () => {
                     <div className="navbar-collapse justify-content-center">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <NavLink to="/" className="nav-link">Home</NavLink>
+                                <NavLink to="/" className="nav-link">Homee</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/about" className="nav-link">About</NavLink>
