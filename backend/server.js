@@ -10,6 +10,6 @@ app.use("/user",user);
 
 connectDb().then(()=>{
     app.listen("5000",()=>{
-        console.log("Running at port on manali 5000");
+        console.log("Running at port on 5000");
     })
 })
