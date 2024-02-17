@@ -10,6 +10,6 @@ app.use("/user",user);
 
 connectDb().then(()=>{
     app.listen("5000",()=>{
-        console.log("Running at port number 5000");
+        console.log("Running at port number palak 5000");
     })
 })
