@@ -66,6 +66,10 @@ form label {
   color: white;
 }
 
+.btn-primary:hover {
+  background-color: #193f4a !important;
+}
+
 form a {
   color: rgb(23, 23, 197);
 }
