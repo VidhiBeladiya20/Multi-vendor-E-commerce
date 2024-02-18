@@ -1,0 +1,86 @@
+
+@media screen and (max-width: 1700px){
+  .form_div{
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 1450px){
+  .form_div{
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 1300px){
+  .form_div{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .form_div{
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .form_div{
+    width: 90%;
+  }
+}
+
+.form_div{
+  border-radius: 10px;  
+}
+
+.signup hr {
+  position: relative;
+  top: 2px;
+  width: 40%;
+}
+
+hr {
+  position: relative;
+  width: 35%;
+}
+
+form label {
+  color: black;
+}
+
+.eyeicon {
+  top: 35%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.signup .eyeicon {
+  top: 52%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #1F4959 !important;
+  border: #1F4959 !important;
+  color: white;
+}
+
+form a {
+  color: rgb(23, 23, 197);
+}
+form a:hover {
+  color: rgb(23, 23, 153);
+}
+/* 
+.avtar {
+  color: rgb(103, 103, 103);
+}
+
+span {
+  margin-right: 0px;
+}
+
+.avt {
+  margin-right: 7rem;
+} */
