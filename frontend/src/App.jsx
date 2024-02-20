@@ -5,6 +5,7 @@ import {About} from "./pages/About";
 import {SignUp} from "./pages/SignUp";
 import { Login } from "./pages/Login";
 import { Shop } from "./pages/Shop" ;
+import { Error } from "./pages/Error";
 
 export const App=()=>{
   return (
@@ -17,6 +18,7 @@ export const App=()=>{
             <Route path="/about" element={<About/>}/>
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="*" element={<Error/>}/>
 
           </Routes>
       </BrowserRouter>

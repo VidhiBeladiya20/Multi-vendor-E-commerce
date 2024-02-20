@@ -76,6 +76,10 @@ form a {
 form a:hover {
   color: rgb(23, 23, 153);
 }
+
+.form_div input{
+  font-size: 13px;
+}
 /* 
 .avtar {
   color: rgb(103, 103, 103);

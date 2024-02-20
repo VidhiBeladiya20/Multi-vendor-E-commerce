@@ -1,21 +1,23 @@
 import { useState } from "react";
-import "./form.css";
+import "../../public/assets/css/form.css";
 import { Link } from "react-router-dom";
-import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import axios from "axios";
 
 export const SignUp = () => {
 
     const [visible, setVisible] = useState(false);
-    
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         phone: '',
         password: '',
-        profile: null,
+        image: null,
     });
 
     const handleInput = (e) => {
+        // console.log(e);
         const { name, value, files } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -23,65 +25,93 @@ export const SignUp = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
+        try {
+            const response = await fetch(`http://localhost:5000/user/register`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            console.log(response);
+            if (response.ok) {
+                console.log('Registration successful');
+            } else if (response.status === 422) {
+                const errorData = await response.json();
+                console.log('Validation errors:', errorData);
+            } else {
+                console.error('Server error:', response.status);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    return(
+    return (
         <>
             <div className="signup template d-flex justify-content-center align-items-center w-100 vh-100 bg-light">
                 <div className="form_div bg-white px-5 py-4 shadow-sm">
                     <form onSubmit={handleSubmit}>
                         <h3 className="text-center">Sign Up</h3>
-                        <hr className="mx-auto"/>
+                        <hr className="mx-auto" />
                         <div className="mb-3 mt-4">
                             <label className="mb-1" htmlFor="username">Username</label>
-                            <input 
-                            type="text" 
-                            name="username" 
-                            value={formData.username}
-                            onChange={handleInput}
-                            autoComplete="off"
-                            className="form-control shadow-none" 
-                            required
+                            <input
+                                type="text"
+                                placeholder="Enter Your Name"
+                                id="username"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleInput}
+                                autoComplete="off"
+                                className="form-control shadow-none"
+                                required
                             />
                         </div>
                         <div className="mb-3">
                             <label className="mb-1" htmlFor="email">Email</label>
-                            <input 
-                            type="email" 
-                            name="email" 
-                            value={formData.email}
-                            onChange={handleInput}
-                            autoComplete="off"
-                            className="form-control shadow-none" 
-                            required
+                            <input
+                                type="email"
+                                placeholder="Enter Your Email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInput}
+                                autoComplete="off"
+                                className="form-control shadow-none"
+                                required
                             />
                         </div>
                         <div className="mb-3">
                             <label className="mb-1" htmlFor="phone">Phone Number</label>
-                            <input 
-                            type="number" 
-                            name="phone" 
-                            value={formData.phone}
-                            onChange={handleInput}
-                            autoComplete="off"
-                            className="form-control  shadow-none" 
-                            required
+                            <input
+                                type="number"
+                                placeholder="Enter Your Mobile number"
+                                id="phone"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleInput}
+                                autoComplete="off"
+                                className="form-control  shadow-none"
+                                required
                             />
                         </div>
                         <div className="mb-3 position-relative">
                             <label className="mb-1" htmlFor="password">Password</label>
-                            <input 
-                                type={ visible ? "text" : "password"} 
-                                name="password" 
+                            <input
+                                type={visible ? "text" : "password"}
+                                placeholder="Enter Your Password"
+                                id="password"
+                                name="password"
                                 value={formData.password}
                                 onChange={handleInput}
                                 autoComplete="off"
-                                className="form-control  shadow-none" 
+                                className="form-control  shadow-none"
                                 required
-                                />
+                            />
                             {
                                 visible ? (
                                     <AiOutlineEye
@@ -99,15 +129,16 @@ export const SignUp = () => {
                             }
                         </div>
                         <div className="mb-4">
-                            <label className="mb-1" htmlFor="profile">Upload Profile</label>
-                            <input 
-                            type="file" 
-                            name="profile" 
-                            onChange={handleInput}
-                            className="form-control  shadow-none" 
-                            required
+                            <label className="mb-1" htmlFor="image">Upload Profile Image</label>
+                            <input
+                                type="file"
+                                id="image"
+                                name="image"
+                                onChange={handleInput}
+                                className="form-control  shadow-none"
+                                required
                             />
-                        </div>    
+                        </div>
                         <div className="d-grid mb-3">
                             <button type="submit" className="btn btn-primary shadow-none">Sign Up</button>
                         </div>

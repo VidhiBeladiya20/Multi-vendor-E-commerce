@@ -11,7 +11,7 @@ const home = async (req,res) =>{
 
 const register = async (req,res) =>{
     try {
-        const { username,email,phone,password } = req.body;
+        const { username,email,phone,image,password } = req.body;
         const userExist = await userModel.findOne({ email : email });
 
         if(userExist){
@@ -19,7 +19,7 @@ const register = async (req,res) =>{
         }
 
         // hash the pswd      
-        const user = await userModel.create({ username, email,phone,password });
+        const user = await userModel.create({ username, email,phone,image,password });
         res.status(200).json({msg : "registration successful",
             token : await user.generateToken(),
             userId:user._id.toString()
@@ -27,7 +27,7 @@ const register = async (req,res) =>{
     } 
     catch (error) {
         // res.status(400).send({msg:"register page not found"});
-        next(error)
+        next(error);
     }
 }
 const login = async (req,res) =>{
