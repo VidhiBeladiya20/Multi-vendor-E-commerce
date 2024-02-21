@@ -211,11 +211,13 @@ export const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6 mix kid">
+
+                        <div className="col-lg-3 col-md-4 col-sm-6 mix women">
                             <div className="product__item">
-                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-5.jpg">
+                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-1.jpg">
+                                    {/* <div className="label new">New</div> */}
                                     <ul className="product__hover">
-                                        <li><a href="i../../public/assets/img/home/product-5.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
+                                        <li><a href="../../public/assets/img/home/product-1.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
                                         <li>
                                             <a href="#"><IoMdHeartEmpty size={23} /></a>
                                         </li>
@@ -239,12 +241,13 @@ export const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6 mix women men kid accessories cosmetic">
-                            <div className="product__item sale">
-                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-6.jpg">
+
+                        <div className="col-lg-3 col-md-4 col-sm-6 mix women">
+                            <div className="product__item">
+                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-1.jpg">
                                     <div className="label sale">Sale</div>
                                     <ul className="product__hover">
-                                        <li><a href="../../public/assets/img/home/product-6.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
+                                        <li><a href="../../public/assets/img/home/product-1.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
                                         <li>
                                             <a href="#"><IoMdHeartEmpty size={23} /></a>
                                         </li>
@@ -268,11 +271,12 @@ export const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6 mix women men kid accessories cosmetic">
+
+                        <div className="col-lg-3 col-md-4 col-sm-6 mix women">
                             <div className="product__item">
-                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-7.jpg">
+                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-1.jpg">
                                     <ul className="product__hover">
-                                        <li><a href="../../public/assets/img/home/product-7.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
+                                        <li><a href="../../public/assets/img/home/product-1.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
                                         <li>
                                             <a href="#"><IoMdHeartEmpty size={23} /></a>
                                         </li>
@@ -296,12 +300,12 @@ export const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6 mix women men kid accessories cosmetic">
-                            <div className="product__item sale">
-                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-8.jpg">
-                                    <div className="label">Sale</div>
+                        <div className="col-lg-3 col-md-4 col-sm-6 mix women">
+                            <div className="product__item">
+                                <div className="product__item__pic set-bg" data-setbg="../../public/assets/img/home/product-1.jpg">
+                                    <div className="label sale">Sale</div>
                                     <ul className="product__hover">
-                                        <li><a href="../../public/assets/img/home/product-8.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
+                                        <li><a href="../../public/assets/img/home/product-1.jpg" className="image-popup"><CgArrowsExpandRight size={23} /></a></li>
                                         <li>
                                             <a href="#"><IoMdHeartEmpty size={23} /></a>
                                         </li>
