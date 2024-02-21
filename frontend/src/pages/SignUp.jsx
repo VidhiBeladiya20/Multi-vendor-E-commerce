@@ -2,7 +2,6 @@ import { useState } from "react";
 import "../../public/assets/css/form.css";
 import { Link } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import axios from "axios";
 
 export const SignUp = () => {
 

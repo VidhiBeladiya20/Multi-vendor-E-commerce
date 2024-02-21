@@ -1,5 +1,6 @@
 const userModel = require("../models/user-model");
 const bcrypt = require("bcrypt");
+const multer = require("multer");
 
 const home = async (req,res) =>{
     try {
@@ -11,7 +12,8 @@ const home = async (req,res) =>{
 
 const register = async (req,res) =>{
     try {
-        const { username,email,phone,image,password } = req.body;
+        const { username,email,phone,password } = req.body;
+        const image = req.file.filename;
         const userExist = await userModel.findOne({ email : email });
 
         if(userExist){
