@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../../public/assets/css/sellerForm.css";
 import { Link } from "react-router-dom";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const SellerSignup = () => {
 
