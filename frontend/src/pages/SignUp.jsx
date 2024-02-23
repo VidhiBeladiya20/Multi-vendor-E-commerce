@@ -51,7 +51,7 @@ export const SignUp = () => {
 
     return (
         <>
-            <div className="signup template d-flex justify-content-center align-items-center w-100 vh-100 bg-light">
+            <div className="signup template d-flex justify-content-center align-items-center w-100 h-100 bg-light">
                 <div className="form_div bg-white px-5 py-4 shadow-sm">
                     <form onSubmit={handleSubmit}>
                         <h3 className="text-center">Sign Up</h3>
