@@ -12,7 +12,7 @@ const userSchema=new mongoose.Schema({
         require: true
     },
     phone:{
-        type:String,
+        type:Number,
         require: true
     },
     password:{
@@ -56,7 +56,7 @@ userSchema.methods.generateToken = async function() {
         {
             userId : this._id.toString(),
             email : this.email,
-            isAdmin : this.isAdmin,
+            role : this.role,
         },
         "multi-vendor",
         {

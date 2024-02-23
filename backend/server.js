@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const user = require("./router/auth-router");
+const seller = require("./router/seller-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middlewarre");
 
@@ -14,8 +15,10 @@ const corsOption = {
 app.use(cors(corsOption));
 
 
-app.use(express.json());   //middleware
+app.use(express.json());   //middleware  
 app.use("/user",user);
+app.use("/seller",seller);
+app.use("/product",product);
 
 app.use(errorMiddleware); //error middleware
 connectDb().then(()=>{

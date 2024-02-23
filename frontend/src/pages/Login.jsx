@@ -39,7 +39,7 @@ export const Login = () => {
                 setFormData({email:"",password:""})
                 navigate("/");
             }else{
-                console.log("Invalid credential");
+                console.log("hello");
             }
         } catch (error) {
             console.log(error);
