@@ -5,10 +5,18 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const SellerSignup = () => {
 
-    const [visible, setVisible] = useState(false);
-
     const [formData, setFormData] = useState({
-        username: '',
+        sellerName: '',
+        category: '',
+        annualTurnover: '',
+        getProducts: '',
+        streetAddress: '',
+        city: '',
+        state: '',
+        country: '',
+        zipCode: '',
+        businessTitle: '',
+        companyName: '',
         email: '',
         phone: '',
         password: '',
@@ -27,26 +35,26 @@ export const SellerSignup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
-        try {
-            const response = await fetch(`http://localhost:5000/user/register`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            console.log(response);
-            if (response.ok) {
-                console.log('Registration successful');
-            } else if (response.status === 422) {
-                const errorData = await response.json();
-                console.log('Validation errors:', errorData);
-            } else {
-                console.error('Server error:', response.status);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await fetch(`http://localhost:5000/user/register`, {
+        //         method: "POST",
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(formData),
+        //     });
+        //     console.log(response);
+        //     if (response.ok) {
+        //         console.log('Registration successful');
+        //     } else if (response.status === 422) {
+        //         const errorData = await response.json();
+        //         console.log('Validation errors:', errorData);
+        //     } else {
+        //         console.error('Server error:', response.status);
+        //     }
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 
     return (
@@ -55,280 +63,247 @@ export const SellerSignup = () => {
         <div className="container">
             <center><h2 className="pt-5">Seller Registration</h2></center>
             <center><hr /></center>
-            <form className="">
+            <form onSubmit={handleSubmit}>
 
             <div className="row">
                 <div className="col-lg-6 part">
                     <div className="mb-3">
-                        <label for="sellerName" className="form-label">Seller Name</label>
+                        <label htmlFor="sellerName" className="form-label">Seller Name</label>
                         <input 
                         type="text" 
+                        placeholder="Enter Your Name"
                         className="form-control shadow-none" 
                         id="sellerName" 
                         name="sellerName" 
+                        value={formData.name}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="category" className="form-label">Category</label>
+                        <label htmlFor="category" className="form-label">Category</label>
                         <input 
                         type="text" 
+                        placeholder="Category"
                         className="form-control shadow-none" 
                         id="category" 
                         name="category" 
-
+                        value={formData.category}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="annualTurnover" className="form-label">Annual Turnover</label>
+                        <label htmlFor="annualTurnover" className="form-label">Annual Turnover</label>
                         <input 
                         type="number" 
+                        step="any"
+                        max={Infinity}
+                        placeholder="Annual Turnover"
                         className="form-control shadow-none" 
                         id="annualTurnover" 
                         name="annualTurnover" 
-
+                        value={formData.annualTurnover}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="products" className="form-label products">Where do you get products from?</label><br />
+                        <label htmlFor="products" className="form-label products">Where do you get products from?</label><br />
                         <input 
                         type="radio" 
                         className="radio" 
                         id="option1" 
-                        name="products" 
-
-                        /> I manufacture them <br />
+                        name="getProducts" 
+                        value= "I Manufacture Them"
+                        checked= {formData.getProducts === 'I Manufacture Them'}
+                        onChange={handleInput}
+                        required
+                        /> I Manufacture Them <br />
                         <input 
                         type="radio" 
                         className="radio" 
                         id="option2" 
-                        name="products" 
-
-                        /> I import them <br />
+                        name="getProducts" 
+                        value="I Import Them"
+                        checked= {formData.getProducts === 'I Import Them'}
+                        onChange={handleInput}
+                        required
+                        /> I Import Them <br />
                         <input 
                         type="radio" 
                         className="radio" 
                         id="option3" 
-                        name="products" 
-
-                        /> I resell products that i buy
+                        name="getProducts" 
+                        value="I Resell Products That I Buy"
+                        checked= {formData.getProducts === 'I Resell Products That I Buy'}
+                        onChange={handleInput}
+                        required
+                        /> I Resell Products That I Buy
                     </div>
                     <div className="mb-3">
-                        <label for="streetAddress" className="form-label">Street Address</label>
+                        <label htmlFor="streetAddress" className="form-label">Street Address</label>
                         <input 
                         type="text" 
+                        placeholder="Street Address"
                         className="form-control shadow-none" 
                         id="streetAddress" 
                         name="streetAddress" 
-
+                        value={formData.address}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="city" className="form-label">City/Town</label>
+                        <label htmlFor="city" className="form-label">City/Town</label>
                         <input type="text" 
+                        placeholder="City/Town"
                         className="form-control shadow-none" 
                         id="city" 
                         name="city" 
-
+                        value={formData.city}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="state" className="form-label">State/Region</label>
+                        <label htmlFor="state" className="form-label">State/Region</label>
                         <input 
                         type="text" 
+                        placeholder="State/Region"
                         className="form-control shadow-none" 
                         id="state" 
                         name="state" 
-
+                        value={formData.state}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                 </div>
                 <div className="col-lg-6 part">
                     <div className="mb-3">
-                        <label for="country" className="form-label">Country</label>
+                        <label htmlFor="country" className="form-label">Country</label>
                         <input 
                         type="text" 
+                        placeholder="Country"
                         className="form-control shadow-none" 
                         id="country" 
                         name="country" 
-
+                        value={formData.country}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="postalCode" className="form-label">Zip/Postal Code</label>
+                        <label htmlFor="postalCode" className="form-label">Zip/Postal Code</label>
                         <input 
                         type="number" 
+                        placeholder="Zip/Postal Code"
                         className="form-control shadow-none" 
-                        id="postalCode" 
-                        name="postalCode" 
-
+                        id="zipCode" 
+                        name="zipCode" 
+                        value={formData.zipCode}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="businessTitle" className="form-label">Business Title</label>
+                        <label htmlFor="businessTitle" className="form-label">Business Title</label>
                         <input 
                         type="text" 
+                        placeholder="Business Title"
                         className="form-control shadow-none" 
                         id="businessTitle" 
                         name="businessTitle" 
-
+                        value={formData.businessTitle}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="companyName" className="form-label">Company Name</label>
+                        <label htmlFor="companyName" className="form-label">Company Name</label>
                         <input 
                         type="text" 
+                        placeholder="Company Name"
                         className="form-control shadow-none" 
                         id="companyName" 
                         name="companyName" 
-
+                        value={formData.companyName}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="email" className="form-label">Email</label>
+                        <label htmlFor="email" className="form-label">Email</label>
                         <input 
                         type="email" 
+                        placeholder="Enter Your Email"
                         className="form-control shadow-none" 
                         id="email" 
                         name="email" 
-
+                        value={formData.email}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="phoneNumber" className="form-label">Phone Number</label>
+                        <label htmlFor="phoneNumber" className="form-label">Mobile Number</label>
                         <input 
                         type="tel" 
+                        placeholder="Enter Mobile Number"
                         className="form-control shadow-none" 
                         id="phoneNumber" 
-                        name="phoneNumber" 
-
+                        name="phone" 
+                        value={formData.phone}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">Password</label>
                         <input 
                         type="password" 
+                        placeholder="Enter Your Password"
                         className="form-control shadow-none" 
                         id="password" 
                         name="password" 
-
+                        value={formData.password}
+                        onChange={handleInput}
+                        autoComplete="off"
+                        required
                         />
                     </div>
                     <div className="mb-3">
-                        <label for="photo" className="form-label">Photo</label>
+                        <label htmlFor="image" className="form-label">Upload Image</label>
                         <input 
                         type="file" 
                         className="form-control shadow-none" 
-                        id="photo" 
-                        name="photo" 
-
+                        id="image" 
+                        name="image" 
+                        accept="image/*"
+                        onChange={handleInput}
+                        required
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary shadow-none">Submit</button>
 
                 </div>
             </div>
             </form>
         </div>
         </div>
-
-            {/* <div className="signup template d-flex justify-content-center align-items-center w-100 vh-100 bg-light">
-                <div className="form_div bg-white px-5 py-4 shadow-sm">
-                    <form onSubmit={handleSubmit}>
-                        <h3 className="text-center">Seller Registration</h3>
-                        <hr className="mx-auto" />
-                        <div className="container">
-                        <div className="mb-3 mt-4">
-                            <label className="mb-1" htmlFor="username">Username</label>
-                            <input
-                                type="text"
-                                placeholder="Enter Your Name"
-                                id="username"
-                                name="username"
-                                value={formData.username}
-                                onChange={handleInput}
-                                autoComplete="off"
-                                className="form-control shadow-none"
-                                required
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="mb-1" htmlFor="email">Email</label>
-                            <input
-                                type="email"
-                                placeholder="Enter Your Email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleInput}
-                                autoComplete="off"
-                                className="form-control shadow-none"
-                                required
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="mb-1" htmlFor="phone">Phone Number</label>
-                            <input
-                                type="number"
-                                placeholder="Enter Your Mobile number"
-                                id="phone"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleInput}
-                                autoComplete="off"
-                                className="form-control  shadow-none"
-                                required
-                            />
-                        </div>
-                        <div className="mb-3 position-relative">
-                            <label className="mb-1" htmlFor="password">Password</label>
-                            <input
-                                type={visible ? "text" : "password"}
-                                placeholder="Enter Your Password"
-                                id="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleInput}
-                                autoComplete="off"
-                                className="form-control  shadow-none"
-                                required
-                            />
-                            {
-                                visible ? (
-                                    <AiOutlineEye
-                                        className="eyeicon position-absolute"
-                                        size={25}
-                                        onClick={() => setVisible(false)}
-                                    />
-                                ) : (
-                                    <AiOutlineEyeInvisible
-                                        className="eyeicon position-absolute"
-                                        size={25}
-                                        onClick={() => setVisible(true)}
-                                    />
-                                )
-                            }
-                        </div>
-                        <div className="mb-4">
-                            <label className="mb-1" htmlFor="image">Upload Profile Image</label>
-                            <input
-                                type="file"
-                                id="image"
-                                name="image"
-                                onChange={handleInput}
-                                className="form-control  shadow-none"
-                                required
-                            />
-                        </div>
-                        <div className="d-grid mb-3">
-                            <button type="submit" className="btn btn-primary shadow-none">Sign Up</button>
-                        </div>
-                        <div className="">
-                            Already have an account? <Link className="link text-decoration-none" to="/login" >Sign In</Link>
-                        </div>
-                        </div>
-                    </form>
-                </div>
-            </div> */}
         </>
     )
 }
