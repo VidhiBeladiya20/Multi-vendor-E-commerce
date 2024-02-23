@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "../../public/assets/css/form.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
+
+
 export const Login = () => {
 
     const [visible, setVisible] = useState(false);
@@ -19,8 +21,29 @@ export const Login = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:5000/user/login`,{
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            console.log("login page",response);
+            if(response.ok){
+                console.log("login successfull");
+                setFormData({email:"",password:""})
+                navigate("/");
+            }else{
+                console.log("Invalid credential");
+            }
+        } catch (error) {
+            console.log(error);
+        }
         console.log(formData);
     };
 

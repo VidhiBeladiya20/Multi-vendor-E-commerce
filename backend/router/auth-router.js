@@ -7,6 +7,6 @@ const upload_image_middleware = require("../middlewares/upload-image-middleware"
 
 router.route("/").get(controller.home);
 router.route("/register").post(validate(registerSchema),upload_image_middleware,controller.register);
-router.route("/login").get(validate(loginSchema),controller.login);
+router.route("/login").post(validate(loginSchema),controller.login);
 
 module.exports = router;
