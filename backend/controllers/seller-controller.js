@@ -12,6 +12,9 @@ const home = async (req,res) =>{
 const register = async (req,res,next) =>{
     try {
         const { name,category,turnover,method,address,city,state,country,pincode,title,email,phone,password } = req.body;
+
+        const image = req.file.filename;
+        
         const sellerExist = await sellerModel.findOne({ email : email });
 
         if(sellerExist){

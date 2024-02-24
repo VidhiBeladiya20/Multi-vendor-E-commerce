@@ -7,38 +7,37 @@ export const SignUp = () => {
 
     const [visible, setVisible] = useState(false);
 
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        phone: '',
-        password: '',
-        image: null,
-    });
+    const [username,setUsername] = useState('');
+    const [email,setEmail] = useState('');
+    const [phone,setPhone] = useState('');
+    const [password,setPassword] = useState('');
+    const [image,setImage] = useState('');
 
-    const handleInput = (e) => {
-        // console.log(e);
-        const { name, value, files } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: files ? files[0].name : value,
-        }));
-    };
+
+    const formData = new FormData()
+        formData.append('username',username);
+        formData.append('email',email);
+        formData.append('phone',phone);
+        formData.append('password',password);
+        formData.append('image',image);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        // console.log(formData);
         try {
             const response = await fetch(`http://localhost:5000/user/register`, {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formData,
             });
             console.log(response);
             if (response.ok) {
-                console.log('Registration successful');
-            } else if (response.status === 422) {
+                console.log('Registration successfully');
+                setUsername('');
+                setEmail('');
+                setPhone('');
+                setPassword('');
+                setImage('');
+            } else if (response.status === 400) {
                 const errorData = await response.json();
                 console.log('Validation errors:', errorData);
             } else {
@@ -51,9 +50,9 @@ export const SignUp = () => {
 
     return (
         <>
-            <div className="signup template d-flex justify-content-center align-items-center w-100 h-100 bg-light">
+            <div className="signup template d-flex justify-content-center align-items-center w-100 vh-100 bg-light">
                 <div className="form_div bg-white px-5 py-4 shadow-sm">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <h3 className="text-center">Sign Up</h3>
                         <hr className="mx-auto" />
                         <div className="mb-3 mt-4">
@@ -63,8 +62,8 @@ export const SignUp = () => {
                                 placeholder="Enter Your Name"
                                 id="username"
                                 name="username"
-                                value={formData.username}
-                                onChange={handleInput}
+                                value={username}
+                                onChange={(e)=>setUsername(e.target.value)}
                                 autoComplete="off"
                                 className="form-control shadow-none"
                                 required
@@ -77,8 +76,8 @@ export const SignUp = () => {
                                 placeholder="Enter Your Email"
                                 id="email"
                                 name="email"
-                                value={formData.email}
-                                onChange={handleInput}
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)}
                                 autoComplete="off"
                                 className="form-control shadow-none"
                                 required
@@ -91,8 +90,8 @@ export const SignUp = () => {
                                 placeholder="Enter Your Mobile number"
                                 id="phone"
                                 name="phone"
-                                value={formData.phone}
-                                onChange={handleInput}
+                                value={phone}
+                                onChange={(e)=>setPhone(e.target.value)}
                                 autoComplete="off"
                                 className="form-control  shadow-none"
                                 required
@@ -105,8 +104,8 @@ export const SignUp = () => {
                                 placeholder="Enter Your Password"
                                 id="password"
                                 name="password"
-                                value={formData.password}
-                                onChange={handleInput}
+                                value={password}
+                                onChange={(e)=>setPassword(e.target.value)}
                                 autoComplete="off"
                                 className="form-control  shadow-none"
                                 required
@@ -133,7 +132,7 @@ export const SignUp = () => {
                                 type="file"
                                 id="image"
                                 name="image"
-                                onChange={handleInput}
+                                onChange={(e)=>setImage(e.target.files[0])}
                                 className="form-control  shadow-none"
                                 required
                             />

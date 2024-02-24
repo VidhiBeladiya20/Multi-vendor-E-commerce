@@ -59,13 +59,13 @@ export const SellerSignup = () => {
     return (
         <>
         <div className="bg-light">
-        <div className="container">
+        <div className="container mx-auto">
             <center><h2 className="pt-5">Seller Registration</h2></center>
             <center><hr /></center>
             <form onSubmit={handleSubmit}>
 
             <div className="row">
-                <div className="col-lg-6 part">
+                <div className="col-lg-4 part">
                     <div className="mb-3">
                         <label htmlFor="sellerName" className="form-label">Seller Name</label>
                         <input 
@@ -185,7 +185,7 @@ export const SellerSignup = () => {
                         />
                     </div>
                 </div>
-                <div className="col-lg-6 part">
+                <div className="col-lg-4 part">
                     <div className="mb-3">
                         <label htmlFor="country" className="form-label">Country</label>
                         <input 

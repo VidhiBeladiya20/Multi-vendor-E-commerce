@@ -18,7 +18,7 @@ app.use(cors(corsOption));
 app.use(express.json());   //middleware  
 app.use("/user",user);
 app.use("/seller",seller);
-app.use("/product",product);
+// app.use("/product",product);
 
 app.use(errorMiddleware); //error middleware
 connectDb().then(()=>{

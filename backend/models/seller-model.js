@@ -55,6 +55,10 @@ const sellerSchema=new mongoose.Schema({
         type:String,
         require:true
     },
+    image:{
+        type:String,
+        require:true
+    },
     role:{
         type:String,
         default:"seller"

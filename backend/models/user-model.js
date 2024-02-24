@@ -12,17 +12,13 @@ const userSchema=new mongoose.Schema({
         require: true
     },
     phone:{
-        type:Number,
+        type:String,
         require: true
     },
     password:{
         type:String,
         require: true
     },
-    // image:{
-    //     data: Buffer,
-    //     contentType: String
-    // },
     image:{
         type:String,
         require:true
