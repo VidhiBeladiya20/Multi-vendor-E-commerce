@@ -7,6 +7,7 @@ import { Login } from "./pages/Login";
 import { Shop } from "./pages/Shop" ;
 import { Error } from "./pages/Error";
 import { SellerSignup } from "./pages/SellerSignup"; 
+import { Logout } from "./pages/Logout";
 
 export const App=()=>{
   return (
@@ -20,6 +21,7 @@ export const App=()=>{
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/seller" element={<SellerSignup/>}/>
+            <Route path="/logout" element={<Logout/>}/>
             <Route path="*" element={<Error/>}/>
 
           </Routes>

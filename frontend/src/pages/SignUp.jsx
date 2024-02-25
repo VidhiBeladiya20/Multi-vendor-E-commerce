@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../public/assets/css/form.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const SignUp = () => {
@@ -14,12 +15,16 @@ export const SignUp = () => {
     const [image,setImage] = useState('');
 
 
+
     const formData = new FormData()
         formData.append('username',username);
         formData.append('email',email);
         formData.append('phone',phone);
         formData.append('password',password);
         formData.append('image',image);
+
+        const navigate = useNavigate();
+        const {storeTokenInLS} = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,9 +34,11 @@ export const SignUp = () => {
                 method: "POST",
                 body: formData,
             });
-            console.log(response);
-            if (response.ok) {
+            const res_data = await response.json();
+            if (response.ok) {               
+                // console.log(res_data);
                 console.log('Registration successfully');
+                storeTokenInLS(res_data.token)
                 setUsername('');
                 setEmail('');
                 setPhone('');

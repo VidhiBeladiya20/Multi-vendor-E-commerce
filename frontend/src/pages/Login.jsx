@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../../public/assets/css/form.css";
 import { Link, useNavigate } from "react-router-dom";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
+import { useAuth } from "../store/auth";
+import { Navbar } from "../components/Navbar.jsx";
 
 
 export const Login = () => {
@@ -13,6 +15,9 @@ export const Login = () => {
         password: '',
     });
 
+    const navigate = useNavigate();
+    const {storeTokenInLS} = useAuth();
+
     const handleInput = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -21,7 +26,7 @@ export const Login = () => {
         }));
     };
 
-    const navigate = useNavigate();
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,8 +40,11 @@ export const Login = () => {
             })
             console.log("login page",response);
             if(response.ok){
+                const res_data = await response.json();
+                // console.log(res_data);
                 console.log("login successfull");
                 setFormData({email:"",password:""})
+                storeTokenInLS(res_data.token)
                 navigate("/");
             }else{
                 console.log("hello");
@@ -49,6 +57,7 @@ export const Login = () => {
 
     return(
         <>
+        <Navbar />
             <div className="signin template d-flex justify-content-center align-items-center w-100 vh-100 bg-light">
                 <div className="form_div bg-white px-5 py-4 shadow-sm">
                     <form onSubmit={handleSubmit}>
