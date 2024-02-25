@@ -17,6 +17,11 @@ Created: Colorib
         Preloader
     --------------------*/
     $(window).on('load', function () {
+        $('.set-bg').each(function () {
+            $(this).on('change',alert('hello'));
+            var bg = $(this).data('setbg');
+            $(this).css('background-image', 'url(' + bg + ')');
+        });
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
 
@@ -36,10 +41,11 @@ Created: Colorib
     /*------------------
         Background Set
     --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    
+    // $('.set-bg').each(function () {
+    //     var bg = $(this).data('setbg');
+    //     $(this).css('background-image', 'url(' + bg + ')');
+    // });
 
     //Search Switch
     $('.search-switch').on('click', function () {
