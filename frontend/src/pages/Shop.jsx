@@ -11,8 +11,19 @@ import { FaStar } from "react-icons/fa";
 import "../../public/assets/css/shop.css";
 import "../../public/assets/js/jquery-3.3.1.min.js";
 import "../../public/assets/js/bootstrap.min.js";
+import { useEffect } from "react";
 
 export const Shop = () => {
+    useEffect(() => {
+        // Select all elements with the class 'set-bg' and set background image using React state
+        const elements = document.querySelectorAll('.set-bg');
+        
+        elements.forEach(element => {
+          const bg = element.getAttribute('data-setbg');
+          element.style.backgroundImage = `url(${bg})`;
+        });
+      }, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
+    
     return (
         <>
             <HelmetProvider>
