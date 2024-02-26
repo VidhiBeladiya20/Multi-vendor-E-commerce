@@ -1,4 +1,4 @@
-
+/* 
 @media screen and (max-width: 1700px){
   .form_div{
     width: 30vw;
@@ -91,4 +91,34 @@ span {
 
 .avt {
   margin-right: 7rem;
+} */ 
+
+.forgot-pass a {
+  color: rgb(125, 124, 124);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.signup-link a {
+  color: rgb(125, 124, 124);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+
+hr {
+  position: relative;
+  width: 35%;
+}
+
+/* .eyeicon {
+  top: 35%;
+  right: 5%;
+  cursor: pointer;
+} */
+
+/* .signup .eyeicon {
+  top: 52%;
+  right: 5%;
+  cursor: pointer;
 } */
