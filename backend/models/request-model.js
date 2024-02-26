@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const sellerSchema=new mongoose.Schema({
+const requestSchema=new mongoose.Schema({
     username:{
         type:String,
         require: true
@@ -77,7 +77,7 @@ const sellerSchema=new mongoose.Schema({
     }
 });
 
-sellerSchema.pre("save",async function(next){
+requestSchema.pre("save",async function(next){
     const seller = this;
 
     if(!seller.isModified("password")){
@@ -94,7 +94,7 @@ sellerSchema.pre("save",async function(next){
 })
 
 // generate token
-sellerSchema.methods.generateToken = async function() {
+requestSchema.methods.generateToken = async function() {
     try {
         return jwt.sign(
         {
@@ -111,10 +111,10 @@ sellerSchema.methods.generateToken = async function() {
         console.log(error);
     }
 }
-sellerSchema.methods.comparePswd= async function(password){
+requestSchema.methods.comparePswd= async function(password){
     return bcrypt.compare(password,this.password);
 }
 
-const sellerModel = new mongoose.model("Seller",sellerSchema);
+const requestModel = new mongoose.model("Seller",requestSchema);
 
-module.exports = sellerModel;
+module.exports = requestModel;
