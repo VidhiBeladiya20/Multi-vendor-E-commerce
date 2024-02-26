@@ -223,8 +223,7 @@ export const SellerSignup = () => {
                                     />
                                 </div>
                             </div>
-                        </div>
-                        <div className="company-type">
+                            <div className="company-type">
                             <input type="radio"
                                 id="dot-1"
                                 name="getType"
@@ -262,6 +261,8 @@ export const SellerSignup = () => {
                                 </label>
                             </div>
                         </div>
+                        </div>
+                        
                         <div className="button text-center">
                             <input type="submit" defaultValue="Register" />
                         </div>
