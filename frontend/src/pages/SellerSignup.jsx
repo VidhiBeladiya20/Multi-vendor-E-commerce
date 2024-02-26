@@ -148,6 +148,21 @@ export const SellerSignup = () => {
                                     />
                                 </div>
                                 <div className="input-box">
+                                    <span className="details">Years/Months in Business</span>
+                                    <input
+                                        type="number"
+                                        step="any"
+                                        max={Infinity}
+                                        placeholder="Number of Years/Months"
+                                        id="annualTurnover"
+                                        name="annualTurnover"
+                                        value={formData.years}
+                                        onChange={handleInput}
+                                        autoComplete="off"
+                                        required
+                                    />
+                                </div>
+                                <div className="input-box">
                                     <span className="details">Street Address</span>
                                     <input
                                         type="text"
@@ -222,47 +237,51 @@ export const SellerSignup = () => {
                                         required
                                     />
                                 </div>
+                                <div className="input-box">
+                                    <span className="details">Breif Description</span>
+                                   <textarea name="desc" id="desc" cols="90" rows="3" placeholder="Product/Service Breif Description"></textarea>
+                                </div>
                             </div>
                             <div className="company-type">
-                            <input type="radio"
-                                id="dot-1"
-                                name="getType"
-                                value="I Manufacture Them"
-                                checked={formData.getProducts === 'I Manufacture Them'}
-                                onChange={handleInput}
-                                required
-                            />
-                            <input type="radio"
-                                name="getType"
-                                id="dot-2"
-                                value="I Import Them"
-                                checked={formData.getProducts === 'I Import Them'}
-                                onChange={handleInput}
-                                required
-                            />
-                            <input type="radio"
-                                name="getType"
-                                id="dot-3"
-                                value="I Resell Products That I Buy"
-                                checked={formData.getProducts === 'I Resell Products That I Buy'}
-                                onChange={handleInput}
-                                required
-                            />
-                            <span className="details">Where do you get products from?</span>
-                            <div className="category">
-                                <label htmlFor="dot-1">
-                                    <span className="dot one" />I Manufacture Them <br />
-                                </label>
-                                <label htmlFor="dot-2">
-                                    <span className="dot two" />I Import Them <br />
-                                </label>
-                                <label htmlFor="dot-3">
-                                    <span className="dot three" />I Resell Products That I Buy
-                                </label>
+                                <input type="radio"
+                                    id="dot-1"
+                                    name="getType"
+                                    value="I Manufacture Them"
+                                    checked={formData.getProducts === 'I Manufacture Them'}
+                                    onChange={handleInput}
+                                    required
+                                />
+                                <input type="radio"
+                                    name="getType"
+                                    id="dot-2"
+                                    value="I Import Them"
+                                    checked={formData.getProducts === 'I Import Them'}
+                                    onChange={handleInput}
+                                    required
+                                />
+                                <input type="radio"
+                                    name="getType"
+                                    id="dot-3"
+                                    value="I Resell Products That I Buy"
+                                    checked={formData.getProducts === 'I Resell Products That I Buy'}
+                                    onChange={handleInput}
+                                    required
+                                />
+                                <span className="details">Where do you get products from?</span>
+                                <div className="category">
+                                    <label htmlFor="dot-1">
+                                        <span className="dot one" />I Manufacture Them <br />
+                                    </label>
+                                    <label htmlFor="dot-2">
+                                        <span className="dot two" />I Import Them <br />
+                                    </label>
+                                    <label htmlFor="dot-3">
+                                        <span className="dot three" />I Resell Products That I Buy
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        
+
                         <div className="button text-center">
                             <input type="submit" defaultValue="Register" />
                         </div>
