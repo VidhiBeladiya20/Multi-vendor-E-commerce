@@ -1,58 +1,38 @@
 import { useState } from "react";
 import "../../public/assets/css/form.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
-import { useAuth } from "../store/auth";
 import { Navbar } from "../components/Navbar.jsx";
 
 
-export const Login = () => {
+export const ResetPassword = () => {
+
+    const [password,setPassword] = useState('');
 
     const [visible, setVisible] = useState(false);
 
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    });
-
-    const navigate = useNavigate();
-    const {storeTokenInLS} = useAuth();
-
-    const handleInput = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
+    const navigate = useNavigate();  
     
+    const {id, token} = useParams();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/user/login`,{
+            const response = await fetch(`http://localhost:5000/user/reset-password/${id}/${token}`,{
                 method:"POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({password}),
             })
-            console.log("login page",response);
+            console.log("reset-password page",response);
             if(response.ok){
-                const res_data = await response.json();
-                // console.log(res_data);
-                console.log("login successfull");
-                setFormData({email:"",password:""})
-                storeTokenInLS(res_data.token)
-                navigate("/");
-            }else{
-                console.log("hello");
+                setPassword("");
+                navigate("/login");
             }
         } catch (error) {
-            console.log(error);
+            console.log(`error from reset-password page : ${error}`);
         }
-        console.log(formData);
     };
 
     return(
@@ -61,27 +41,15 @@ export const Login = () => {
             <div className="signin template d-flex justify-content-center align-items-center w-100 vh-100 bg-light">
                 <div className="form_div bg-white px-5 py-4 shadow-sm">
                     <form onSubmit={handleSubmit}>
-                        <h3 className="text-center">Login</h3>
+                        <h3 className="text-center">Reset Password</h3>
                         <hr className="mx-auto"/>
-                        <div className="mb-3">
-                            <label className="mb-1" htmlFor="email">Email</label>
-                            <input 
-                            type="email" 
-                            name="email" 
-                            value={formData.email}
-                            onChange={handleInput}
-                            autoComplete="off"
-                            className="form-control shadow-none" 
-                            required
-                            />
-                        </div>
                         <div className="mb-4 position-relative">
                             <label className="mb-1" htmlFor="password">Password</label>
                             <input 
                             type={ visible ? "text" : "password"} 
                             name="password"
-                            value={formData.password}
-                            onChange={handleInput}
+                            value={password}
+                            onChange={(e)=>setPassword(e.target.value)}
                             autoComplete="off"
                             className="form-control shadow-none mb-2" 
                             required
@@ -101,14 +69,10 @@ export const Login = () => {
                                     />
                                 )
                             }
-
-                            <NavLink to="/forgot-password" className="text-decoration-none text-end">Forgot your password?</NavLink>
-                            {/* <a href="#" className="text-decoration-none text-end"></a> */}
                             
-                        </div>                    
-                       
+                        </div>                   
                         <div className="d-grid mb-3">
-                            <button type="submit" className="btn btn-primary shadow-none">Login</button>
+                            <button type="submit" className="btn btn-primary shadow-none">Update</button>
                         </div>
                         <div className="">
                             Not have an account? <Link className="link text-decoration-none" to="/signup" >Sign Up</Link>

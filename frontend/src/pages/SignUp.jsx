@@ -38,7 +38,8 @@ export const SignUp = () => {
             if (response.ok) {               
                 // console.log(res_data);
                 console.log('Registration successfully');
-                storeTokenInLS(res_data.token)
+                storeTokenInLS(res_data.token);
+                navigate("/");
                 setUsername('');
                 setEmail('');
                 setPhone('');

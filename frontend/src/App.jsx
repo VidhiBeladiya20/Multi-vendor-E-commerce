@@ -8,6 +8,9 @@ import { Shop } from "./pages/Shop" ;
 import { Error } from "./pages/Error";
 import { SellerSignup } from "./pages/SellerSignup"; 
 import { Logout } from "./pages/Logout";
+import { Profile } from "./pages/Profile";
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { ResetPassword } from "./pages/ResetPassword";
 
 export const App=()=>{
   return (
@@ -22,6 +25,9 @@ export const App=()=>{
             <Route path="/login" element={<Login/>}/>
             <Route path="/seller" element={<SellerSignup/>}/>
             <Route path="/logout" element={<Logout/>}/>
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
+            <Route path="/reset-password/:id/:token" element={<ResetPassword/>}/>
             <Route path="*" element={<Error/>}/>
 
           </Routes>
