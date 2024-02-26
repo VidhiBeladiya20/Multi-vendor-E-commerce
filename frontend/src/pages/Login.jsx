@@ -126,8 +126,6 @@ export const Login = () => {
                                                     <label for="logCheck" className="text">Remember me</label>
                                                 </div>
                                             </div>
-                                            {/* <div className="col-md-2">
-                                            </div> */}
                                             <div className="col-md-6 text-end">
                                                 <div className="forgot-pass">
                                                     <NavLink to="/forgot-password" className="">Forgot password?</NavLink>
