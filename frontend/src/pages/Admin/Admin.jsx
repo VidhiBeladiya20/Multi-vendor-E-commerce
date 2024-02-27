@@ -1,4 +1,3 @@
-// import "../../public/assets/css/admin.css";
 import "../../../public/assets/css/admin.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -29,12 +28,7 @@ export const Admin = () => {
   }
 
   function handleClick(e) {
-    // const links = document.querySelectorAll('links');
-    // links.forEach(link => {
-    //   link.style.backgroundColor = '';
-    // });
-    // e.target.style.backgroundColor = 'blue';
-    // e.target.style.borderRadius = "5px";
+    
   }
 
   return (
@@ -54,7 +48,7 @@ export const Admin = () => {
             <div className="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropdown">
               <ul className="nav flex-column">
                 <li className="nav-item pt-4">
-                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Dashboard</NavLink>
+                  <NavLink className="nav-link text-white links" to="/admin">Dashboard</NavLink>
                 </li>
                 <li className="nav-item pt-4">
                   <NavLink className="nav-link text-white links" to="/admin" onClick={handleCustomers}>Customers</NavLink>
@@ -66,10 +60,10 @@ export const Admin = () => {
                   <NavLink className="nav-link text-white links" to="/admin" onClick={handleRequests}>Requests</NavLink>
                 </li>
                 <li className="nav-item pt-4">
-                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Commission</NavLink>
+                  <NavLink className="nav-link text-white links" to="/admin">Commission</NavLink>
                 </li>
                 <li className="nav-item pt-4">
-                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Sellers Queries</NavLink>
+                  <NavLink className="nav-link text-white links" to="/admin">Sellers Queries</NavLink>
                 </li>
               </ul>
             </div>
@@ -84,8 +78,7 @@ export const Admin = () => {
               (<Customer />)
               :
               (
-                <>
-                </>)
+                <></>)
             }
             {sellers ?
               (<Seller />)
