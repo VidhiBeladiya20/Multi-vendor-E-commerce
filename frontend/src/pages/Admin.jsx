@@ -1,7 +1,17 @@
 import "../../public/assets/css/admin.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Admin = () => {
+
+    function handleClick(e){
+        const links = document.querySelectorAll('links');
+        links.forEach(link => {
+          link.style.backgroundColor = '';
+        });
+        e.target.style.backgroundColor = 'blue';
+        e.target.style.borderRadius = "5px";
+    }
+
     return(
     <>
     <div className="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
@@ -17,22 +27,22 @@ export const Admin = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropdown">
-          <ul className="nav nav-pills flex-column">
+          <ul className="nav flex-column">
             <li className="nav-item">
-              <Link className="nav-link text-white active" to="/admin" >Dashboard</Link>
+              <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Dashboard</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-white" href="users.php">Users</a>
+                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>Users</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-white" href="user_queries.php">User Queries</a>
+                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>User Queries</NavLink>            
             </li>
             <li className="nav-item">
-              <a className="nav-link text-white" href="rate_review.php">Sellers</a>
+                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>Sellers</NavLink>            
             </li>
              <li className="nav-item">
-              <a className="nav-link text-white" href="settings.php">Commission</a>
-            </li> 
+                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>Commission</NavLink>            
+             </li> 
           </ul>
         </div>
       </div>
