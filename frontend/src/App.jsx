@@ -11,7 +11,8 @@ import { Logout } from "./pages/Logout";
 import { Profile } from "./pages/Profile";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { ResetPassword } from "./pages/ResetPassword";
-import { Admin } from "./pages/Admin";
+// import { Admin } from "./pages/Admin";
+import { Admin } from "./pages/Admin/Admin";
 
 export const App=()=>{
   return (

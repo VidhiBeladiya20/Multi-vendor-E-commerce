@@ -61,7 +61,7 @@ export const Login = () => {
             <Helmet bodyAttributes={{ style: 'background-color :rgb(237 238 239) ' }} />
 
             <Navbar />
-            <div class="container">
+            <div className="container">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-4 col-sm-12 mx-auto" style={{ marginTop: "70px", marginBottom: "56px", border: "white", backgroundColor: "white" }}>
@@ -123,7 +123,7 @@ export const Login = () => {
                                             <div className="col-md-6">
                                                 <div className="checkbox-content">
                                                     <input type="checkbox" id="logCheck" name="remember_me" style={{ marginRight: "6px" }} />
-                                                    <label for="logCheck" className="text">Remember me</label>
+                                                    <label htmlFor="logCheck" className="text">Remember me</label>
                                                 </div>
                                             </div>
                                             <div className="col-md-6 text-end">

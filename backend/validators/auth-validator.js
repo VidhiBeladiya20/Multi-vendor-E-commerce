@@ -1,4 +1,11 @@
 const { z } = require("zod");
+// const ACCEPTED_IMAGE_MIME_TYPES = [
+//   "image/jpeg",
+//   "image/jpg",
+//   "image/png",
+//   "image/webp",
+// ];
+// const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
 
 const loginSchema = z.object({
   email: z
@@ -33,6 +40,12 @@ const registerSchema = z.object({
     .trim()
     .min(3, { message: "Password must be at least of 3 characters" })
     .max(255, { message: "Password must not be more than 255 characters" }),
+  // image: z
+  //   .any()
+  //   .refine(
+  //     (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+  //       "Only .jpg, .jpeg, .png and .webp formats are supported."
+  //     ),
 });
 
 module.exports = { registerSchema, loginSchema };

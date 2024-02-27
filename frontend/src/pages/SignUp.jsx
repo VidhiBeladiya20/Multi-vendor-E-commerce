@@ -63,7 +63,7 @@ export const SignUp = () => {
         <Helmet bodyAttributes={{ style: 'background-color :rgb(237 238 239) ' }} />
 
 <Navbar />
-            <div class="container">
+            <div className="container">
                 <div className="container">
                     <div className="row">
                         {/* <div className="col-md-4"></div> */}

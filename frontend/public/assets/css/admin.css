@@ -3,10 +3,10 @@
     --teal_hover: #0c235f;
   }
   
-  *{
+  /* *{
       font-family: 'Poppins', sans-serif;
-  }
-  .h-font{
+  } */
+  /* .h-font{
       font-family: 'Merienda', cursive;
   }
   
@@ -15,7 +15,7 @@
   }
   .go-font{
     font-family: 'Great vibes', cursive;
-  }
+  } */
   /* To hide number arrows -> Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button{
@@ -49,9 +49,16 @@
     right: 25px;
   }
   #dashboard-menu{
+    width: 17%;
     position: fixed;
     height: 100%;
     z-index: 11;
+    background-color: #011425;
+  }
+  
+  .sticky-top{
+    background-color: #1F4959;
+    /* background-color: #5C7C89; */
   }
   
   /* width */
@@ -80,14 +87,22 @@
       margin-top: 60px;
     }
   }
+  
+  #dashboeard-menu{
+    background-color: black;
+  }
+
 
   .nav-item .nav-link {
-    padding-left: 2.5rem;
+    padding-left: 0.8rem;
     margin-bottom: -8px;
     height: 2.7rem;
     margin-top: -4px;
     width: 15.45vw;
     margin-left: -1.7rem;
+    font-size: 16px;
+    font-weight: none;
+    font-family: "Montserrat", sans-serif;
   }
 
   /* .links.clicked {

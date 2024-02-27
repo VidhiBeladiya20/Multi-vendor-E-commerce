@@ -5,36 +5,93 @@ import { Link } from "react-router-dom";
 
 export const SellerSignup = () => {
 
-    const [formData, setFormData] = useState({
-        sellerName: '',
-        category: '',
-        annualTurnover: '',
-        getProducts: '',
-        streetAddress: '',
-        city: '',
-        state: '',
-        country: '',
-        zipCode: '',
-        businessTitle: '',
-        companyName: '',
-        email: '',
-        phone: '',
-        password: '',
-        image: null,
-    });
+    // const [formData, setFormData] = useState({
+    //     username: '',
+    //     email: '',
+    //     phone: '',
+    //     password: '',
+    //     title: '',
+    //     category: '',
+    //     turnover: '',
+    //     years:'',
+    //     address: '',
+    //     city: '',
+    //     state: '',
+    //     country: '',
+    //     pincode: '',
+    //     image: '',
+    //     desc: '',
+    //     method:''
+    // });
 
-    const handleInput = (e) => {
-        // console.log(e);
-        const { name, value, files } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: files ? files[0].name : value,
-        }));
-    };
+
+    const [username,setUsername] = useState('');
+    const [email,setEmail] = useState('');
+    const [phone,setPhone] = useState('');
+    const [password,setPassword] = useState('');
+    const [title,setTitle] = useState('');
+    const [category,setCategory] = useState('');
+    const [turnover,setTurnover] = useState('');
+    const [years,setYears] = useState('');
+    const [address,setAddress] = useState('');
+    const [city,setCity] = useState('');
+    const [state,setState] = useState('');
+    const [country,setCountry] = useState('');
+    const [pincode,setPincode] = useState('');
+    const [image,setImage] = useState('');
+    const [desc,setDesc] = useState('');
+    const [method,setMethod] = useState('');
+
+    // const handleInput = (e) => {
+    //     // console.log(e);
+    //     const { name, value, files } = e.target;
+    //     setFormData((prevData) => ({
+    //         ...prevData,
+    //         [name]: files ? files[0].name : value,
+    //     }));
+    // };
+
+    const formData = new FormData()
+        formData.append('username',username);
+        formData.append('email',email);
+        formData.append('phone',phone);
+        formData.append('password',password);
+        formData.append('title',title);
+        formData.append('category',category);
+        formData.append('turnover',turnover);
+        formData.append('years',years);
+        formData.append('address',address);
+        formData.append('city',city);
+        formData.append('state',state);
+        formData.append('country',country);
+        formData.append('pincode',pincode);
+        formData.append('image',image);
+        formData.append('desc',desc);
+        formData.append('method',method);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
+        try {
+            const response = await fetch(`http://localhost:5000/admin/request`, {
+                method: "POST",
+                body: formData,
+            });
+            const res_data = await response.json();
+            if (response.ok) {
+                console.log(res_data);
+                console.log('Registration successfully');
+                // storeTokenInLS(res_data.token);
+                // navigate("/");
+            } else if (response.status === 400) {
+                const errorData = await response.json();
+                console.log('rror from seller signup form :', errorData);
+            } else {
+                console.error('Server error:', response.status);
+            }
+        } catch (error) {
+            console.log(`error from seller signup form ${error}`);
+        }
     }
 
     return (
@@ -48,7 +105,7 @@ export const SellerSignup = () => {
                     textAlign: "center"
                 }} >Personal Details</div><hr className="mx-auto" />
                 <div className="content">
-                    <form action="#">
+                    <form onSubmit={handleSubmit}>
                         <div>
                             <div className="user-details">
                                 <div className="input-box">
@@ -56,12 +113,12 @@ export const SellerSignup = () => {
                                     <input
                                         type="text"
                                         placeholder="Enter your name"
-                                        name="sellerName"
-                                        id="sellerName"
-                                        value={formData.name}
-                                        onChange={handleInput}
+                                        name="username"
+                                        id="username"
+                                        value={username}
+                                        onChange={(e)=>setUsername(e.target.value)}
                                         autoComplete="off"
-                                        required />
+                                         />
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Email</span>
@@ -70,10 +127,10 @@ export const SellerSignup = () => {
                                         placeholder="Enter your Email"
                                         name="email"
                                         id="email"
-                                        value={formData.email}
-                                        onChange={handleInput}
+                                        value={email}
+                                        onChange={(e)=>setEmail(e.target.value)}
                                         autoComplete="off"
-                                        required />
+                                         />
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Phone Number</span>
@@ -82,10 +139,10 @@ export const SellerSignup = () => {
                                         placeholder="Enter your Mobile no"
                                         name="phone"
                                         id="phone"
-                                        value={formData.phone}
-                                        onChange={handleInput}
+                                        value={phone}
+                                        onChange={(e)=>setPhone(e.target.value)}
                                         autoComplete="off"
-                                        required />
+                                         />
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Password</span>
@@ -94,10 +151,10 @@ export const SellerSignup = () => {
                                         placeholder="Enter your Password"
                                         name="password"
                                         id="password"
-                                        value={formData.password}
-                                        onChange={handleInput}
+                                        value={password}
+                                        onChange={(e)=>setPassword(e.target.value)}
                                         autoComplete="off"
-                                        required />
+                                         />
                                 </div>
                             </div>
                         </div>
@@ -112,25 +169,23 @@ export const SellerSignup = () => {
                                     <input
                                         type="text"
                                         placeholder="Company Name"
-                                        id="companyName"
-                                        name="companyName"
-                                        value={formData.companyName}
-                                        onChange={handleInput}
+                                        id="title"
+                                        name="title"
+                                        value={title}
+                                        onChange={(e)=>setTitle(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Category</span>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter your Category"
-                                        name="category"
-                                        id="category"
-                                        value={formData.category}
-                                        onChange={handleInput}
-                                        autoComplete="off"
-                                        required />
+                                    <select onChange={(e) => setCategory(e.target.value)} value={category} id="category" name="category"
+                                    style={{width:"100%",height:"40px",fontSize:"16px",borderRadius:"5px",border:"1px solid #ccc",paddingLeft:"15px",color:"#7c7373"}}>
+                                        <option value="clothes">Clothes</option>
+                                        <option value="shoes">Shoes</option>
+                                        <option value="accessories">Accessories</option>
+
+                                    </select>
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Annual Turnover</span>
@@ -139,12 +194,12 @@ export const SellerSignup = () => {
                                         step="any"
                                         max={Infinity}
                                         placeholder="Annual Turnover"
-                                        id="annualTurnover"
-                                        name="annualTurnover"
-                                        value={formData.annualTurnover}
-                                        onChange={handleInput}
+                                        id="turnover"
+                                        name="turnover"
+                                        value={turnover}
+                                        onChange={(e)=>setTurnover(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
@@ -154,12 +209,12 @@ export const SellerSignup = () => {
                                         step="any"
                                         max={Infinity}
                                         placeholder="Number of Years/Months"
-                                        id="annualTurnover"
-                                        name="annualTurnover"
-                                        value={formData.years}
-                                        onChange={handleInput}
+                                        id="years"
+                                        name="years"
+                                        value={years}
+                                        onChange={(e)=>setYears(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
@@ -167,12 +222,12 @@ export const SellerSignup = () => {
                                     <input
                                         type="text"
                                         placeholder="Street Address"
-                                        id="streetAddress"
-                                        name="streetAddress"
-                                        value={formData.address}
-                                        onChange={handleInput}
+                                        id="address"
+                                        name="address"
+                                        value={address}
+                                        onChange={(e)=>setAddress(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
@@ -181,10 +236,10 @@ export const SellerSignup = () => {
                                         placeholder="City/Town"
                                         id="city"
                                         name="city"
-                                        value={formData.city}
-                                        onChange={handleInput}
+                                        value={city}
+                                        onChange={(e)=>setCity(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
@@ -194,10 +249,10 @@ export const SellerSignup = () => {
                                         placeholder="State/Region"
                                         id="state"
                                         name="state"
-                                        value={formData.state}
-                                        onChange={handleInput}
+                                        value={state}
+                                        onChange={(e)=>setState(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
@@ -207,10 +262,10 @@ export const SellerSignup = () => {
                                         placeholder="Country"
                                         id="country"
                                         name="country"
-                                        value={formData.country}
-                                        onChange={handleInput}
+                                        value={country}
+                                        onChange={(e)=>setCountry(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
@@ -218,12 +273,12 @@ export const SellerSignup = () => {
                                     <input
                                         type="number"
                                         placeholder="Zip/Postal Code"
-                                        id="zipCode"
-                                        name="zipCode"
-                                        value={formData.zipCode}
-                                        onChange={handleInput}
+                                        id="pincode"
+                                        name="pincode"
+                                        value={pincode}
+                                        onChange={(e)=>setPincode(e.target.value)}
                                         autoComplete="off"
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
@@ -233,39 +288,39 @@ export const SellerSignup = () => {
                                         id="image"
                                         name="image"
                                         accept="image/*"
-                                        onChange={handleInput}
-                                        required
+                                        onChange={(e) => setImage(e.target.files[0])}
+                                        
                                     />
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Breif Description</span>
-                                   <textarea name="desc" id="desc" cols="90" rows="3" placeholder="Product/Service Breif Description"></textarea>
+                                    <textarea name="desc" id="desc" cols="90" rows="3" value={desc} onChange={(e) => setDesc(e.target.value)}placeholder="Product/Service Breif Description"></textarea>
                                 </div>
                             </div>
                             <div className="company-type">
                                 <input type="radio"
                                     id="dot-1"
-                                    name="getType"
-                                    value="I Manufacture Them"
-                                    checked={formData.getProducts === 'I Manufacture Them'}
-                                    onChange={handleInput}
-                                    required
+                                    name="method"
+                                    value="manufacture"
+                                    checked={method === 'manufacture'}
+                                    onChange={(e)=>setMethod(e.target.value)}
+                                    
                                 />
                                 <input type="radio"
-                                    name="getType"
+                                    name="method"
                                     id="dot-2"
-                                    value="I Import Them"
-                                    checked={formData.getProducts === 'I Import Them'}
-                                    onChange={handleInput}
-                                    required
+                                    value="import"
+                                    checked={method === 'import'}
+                                    onChange={(e)=>setMethod(e.target.value)}
+                                    
                                 />
                                 <input type="radio"
-                                    name="getType"
+                                    name="method"
                                     id="dot-3"
-                                    value="I Resell Products That I Buy"
-                                    checked={formData.getProducts === 'I Resell Products That I Buy'}
-                                    onChange={handleInput}
-                                    required
+                                    value="resell"
+                                    checked={method === 'resell'}
+                                    onChange={(e)=>setMethod(e.target.value)}
+                                    
                                 />
                                 <span className="details">Where do you get products from?</span>
                                 <div className="category">
@@ -283,7 +338,8 @@ export const SellerSignup = () => {
                         </div>
 
                         <div className="button text-center">
-                            <input type="submit" defaultValue="Register" />
+                            {/* <input type="submit" defaultValue="Register" /> */}
+                            <button className="btn d-block mx-auto" type="submit" name="signup" style={{ backgroundColor: "#1f7b6f", color: "white", width: "128px", margin: "18px 0px", height: "46px" }}>Submit</button>
                         </div>
                     </form>
                 </div>

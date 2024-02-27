@@ -1,55 +1,124 @@
-import "../../public/assets/css/admin.css";
+// import "../../public/assets/css/admin.css";
+import "../../../public/assets/css/admin.css";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import  Request  from "./Request";
+import Customer from "./Customer";
+import Seller from "./Seller";
 
 export const Admin = () => {
 
-    function handleClick(e){
-        const links = document.querySelectorAll('links');
-        links.forEach(link => {
-          link.style.backgroundColor = '';
-        });
-        e.target.style.backgroundColor = 'blue';
-        e.target.style.borderRadius = "5px";
-    }
+  const [customers, setCustomers] = useState(false);
+  const [sellers, setSellers] = useState(false);
+  const [requests, setRequests] = useState(false);
 
-    return(
+  const handleCustomers = async (e) => {
+    setCustomers(true);
+    setSellers(false);
+    setRequests(false);
+  }
+  const handleSellers = async (e) => {
+    setSellers(true);
+    setCustomers(false);
+    setRequests(false);
+  }
+  const handleRequests = async (e) => {
+    setRequests(true);
+    setSellers(false);
+    setCustomers(false);
+  }
+
+  function handleClick(e) {
+    // const links = document.querySelectorAll('links');
+    // links.forEach(link => {
+    //   link.style.backgroundColor = '';
+    // });
+    // e.target.style.backgroundColor = 'blue';
+    // e.target.style.borderRadius = "5px";
+  }
+
+  return (
     <>
-    <div className="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
-        <h3 className="mb-0 h-font text-white">E-Shop</h3>  
-        <a href="#" className="btn btn-light btn-sm pt-2">LOG OUT</a>
-    </div>   
+      <div className="container-fluid text-light p-3 d-flex align-items-center justify-content-between sticky-top">
+        <h3 className="mb-0 h-font text-white">E-Shop</h3>
+        <a href="#" className="btn btn-light btn-sm p-1">Logout</a>
+      </div>
 
-    <div className="col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
-     <nav className="navbar navbar-expand-lg navbar-dark">
-      <div className="container-fluid flex-lg-column align-items-stretch">
-        <h4 className="mt-2 text-light">ADMIN PANEL</h4>
-        <button className="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#adminDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropdown">
-          <ul className="nav flex-column">
-            <li className="nav-item">
-              <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Dashboard</NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>Users</NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>User Queries</NavLink>            
-            </li>
-            <li className="nav-item">
-                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>Sellers</NavLink>            
-            </li>
-             <li className="nav-item">
-                <NavLink  className="nav-link text-white links" to="/admin" onClick={handleClick}>Commission</NavLink>            
-             </li> 
-          </ul>
+      <div className="mainDiv col-lg-2 border-top border-3 border-secondary" id="dashboard-menu">
+        <nav className="navbar navbar-expand-lg">
+          <div className="container-fluid flex-lg-column align-items-stretch">
+            {/* <h4 className="mt-4 text-light">Admin Panel</h4> */}
+            <button className="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#adminDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropdown">
+              <ul className="nav flex-column">
+                <li className="nav-item pt-4">
+                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Dashboard</NavLink>
+                </li>
+                <li className="nav-item pt-4">
+                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleCustomers}>Customers</NavLink>
+                </li>
+                <li className="nav-item pt-4">
+                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleSellers}>Sellers</NavLink>
+                </li>
+                <li className="nav-item pt-4">
+                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleRequests}>Requests</NavLink>
+                </li>
+                <li className="nav-item pt-4">
+                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Commission</NavLink>
+                </li>
+                <li className="nav-item pt-4">
+                  <NavLink className="nav-link text-white links" to="/admin" onClick={handleClick}>Sellers Queries</NavLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div className="container-fluid" id="main-content">
+        <div className="row">
+          <div className="col-lg-10 ms-auto p-4 overflow-hidden">
+            {customers ?
+              (<Customer />)
+              :
+              (
+                <>
+                </>)
+            }
+            {sellers ?
+              (<Seller />)
+              :
+              (<></>)
+            }
+            {requests ?
+              (<Request />)
+              :
+              (<></>)
+            }
+
+
+
+          </div>
         </div>
       </div>
-     </nav>
-    </div>
 
-    <div className="container-fluid" id="main-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* <div className="container-fluid" id="main-content">
         <div className="row">
           <div className="col-lg-10 ms-auto p-4 overflow-hidden">
     
@@ -158,7 +227,7 @@ export const Admin = () => {
     
           </div>
         </div>
-    </div>
+    </div> */}
     </>
-    );
+  );
 };

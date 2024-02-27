@@ -59,13 +59,13 @@ const requestSchema=new mongoose.Schema({
         type:String,
         require:true
     },
-    method:{
-        type:String,
-        require: true
-    },
     desc:{
         type:String,
         require:true
+    },
+    method:{
+        type:String,
+        require: true
     },
     role:{
         type:String,
@@ -74,19 +74,23 @@ const requestSchema=new mongoose.Schema({
     status:{
         type:String,
         default:"Decline"
+    },
+    date:{
+        type:Date,
+        default: () => Date.now()
     }
 });
 
 requestSchema.pre("save",async function(next){
-    const seller = this;
+    const request = this;
 
-    if(!seller.isModified("password")){
+    if(!request.isModified("password")){
         next();
     }
     try{
         const saltRound = await bcrypt.genSalt(10);
-        const hash_password = await bcrypt.hash(seller.password,saltRound);
-        seller.password = hash_password;
+        const hash_password = await bcrypt.hash(request.password,saltRound);
+        request.password = hash_password;
     }
     catch(error){
         next(error);
@@ -98,7 +102,7 @@ requestSchema.methods.generateToken = async function() {
     try {
         return jwt.sign(
         {
-            sellerId : this._id.toString(),
+            Id : this._id.toString(),
             email : this.email,
             role : this.role,
         },
@@ -115,6 +119,6 @@ requestSchema.methods.comparePswd= async function(password){
     return bcrypt.compare(password,this.password);
 }
 
-const requestModel = new mongoose.model("Seller",requestSchema);
+const requestModel = new mongoose.model("Request",requestSchema);
 
 module.exports = requestModel;
