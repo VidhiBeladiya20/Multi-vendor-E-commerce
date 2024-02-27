@@ -11,7 +11,7 @@ const loginSchema = z.object({
   email: z
     .string({ required_error: "Email is Required" })
     .trim()
-    .email({ message: "Invalid Email" })
+    .email({ message: "Invalid Email Address" })
     .max(255, { message: "Email must not be more than 255 characters" }),
   password: z
     .string({ required_error: "Name is Required" })
@@ -25,16 +25,16 @@ const registerSchema = z.object({
     .string({ required_error: "Name is Required" })
     .trim()
     .max(255, { message: "Name must not be more than 255 characters" }),
-  email: z
+    email: z
     .string({ required_error: "Email is Required" })
     .trim()
-    .email({ message: "Invalid Email" })
+    .email({ message: "Invalid Email Address" })
     .max(255, { message: "Email must not be more than 255 characters" }),
-  phone: z
-    .string({ required_error: "Phone is Required" })
-    .trim()
-    .min(10, { message: "Phone Number must not be more than 10 digits" })
-    .max(10, { message: "Phone Number must not be more than 10 digits" }),
+    phone: z
+      .string({ required_error: "Phone is Required" })
+      .trim()
+      .min(10, { message: "Phone Number must not be more than 10 digits" })
+      .max(10, { message: "Phone Number must not be more than 10 digits" }),
   password: z
     .string({ required_error: "Name is Required" })
     .trim()

@@ -25,8 +25,8 @@ const register = async (req, res, next) => {
 
         // Check if a file was uploaded
         if (!uploadedFile) {
-            return res.status(400).json({ msg: 'No file uploaded' });
-            return;
+            return res.status(400).json({ message: 'No file uploaded' });
+            
         }
 
         // Get the original file extension (if available)
@@ -47,7 +47,7 @@ const register = async (req, res, next) => {
             // Your remaining controller logic here, using req.file.filename as the filename
             const userExist = await userModel.findOne({ email: email });
             if (userExist) {
-                res.status(400).json({ msg: "email already exist" });
+                res.status(400).json({ message: "email already exist" });
                 return;
             }
             // hash the pswd      
@@ -76,7 +76,7 @@ const register = async (req, res, next) => {
                   
                   transporter.sendMail(mailOptions, function(error, info){
                     if (error) {
-                        res.status(400).json({msg: "error from nodemailer in register API",});
+                        res.status(400).json({message: "error from nodemailer in register API",});
                         return;
                     }
                   })
@@ -109,7 +109,7 @@ const login = async (req, res) => {
         const checkuserEmail = await userModel.findOne({ $or: [{ email }, { username }] });
         const checksellerEmail = await sellerModel.findOne({ $or: [{ email }, { name }] });
         if (!checkuserEmail && !checksellerEmail) {
-            res.status(400).send({ msg: "Invalid user Credentials" });
+            res.status(400).send({ message: "Invalid user Credentials" });
         }
         else if (checkuserEmail) {
             const checkPswd = await checkuserEmail.comparePswd(password);
@@ -133,12 +133,12 @@ const login = async (req, res) => {
             }
         }
         else {
-            res.status(400).send({ msg: "Invalid all Credentials" });
+            res.status(400).send({ message: "Invalid all Credentials" });
         }
 
     }
     catch (error) {
-        res.status(400).send({ msg: "register page not found" });
+        res.status(400).send({ message: "register page not found" });
     }
 }
 
@@ -199,13 +199,13 @@ const resetPassword = async (req,res) => {
 
     jwt.verify(token, "jwt_secret_key", (err, decoded) => {
         if(err) {
-            return res.json({msg: `token error from reser-password API : ${err}`})
+            return res.json({message: `token error from reser-password API : ${err}`})
         } else {
             bcrypt.hash(password, 10)
             .then(hash => {
                 userModel.findByIdAndUpdate({_id: id}, {password: hash})
-                .then(u => res.send({msg: "Password Updated"}))
-                .catch(err => res.send({msg: `error from reser-password API : ${err}`}))
+                .then(u => res.send({message: "Password Updated"}))
+                .catch(err => res.send({message: `error from reser-password API : ${err}`}))
             })
             .catch(err => res.send({Status: err}))
         }

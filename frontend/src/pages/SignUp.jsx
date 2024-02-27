@@ -10,23 +10,23 @@ export const SignUp = () => {
 
     // const [visible, setVisible] = useState(false);
 
-    const [username,setUsername] = useState('');
-    const [email,setEmail] = useState('');
-    const [phone,setPhone] = useState('');
-    const [password,setPassword] = useState('');
-    const [image,setImage] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [image, setImage] = useState('');
 
-
+    const [error, setError] = useState({});
 
     const formData = new FormData()
-        formData.append('username',username);
-        formData.append('email',email);
-        formData.append('phone',phone);
-        formData.append('password',password);
-        formData.append('image',image);
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('password', password);
+    formData.append('image', image);
 
-        const navigate = useNavigate();
-        const {storeTokenInLS} = useAuth();
+    const navigate = useNavigate();
+    const { storeTokenInLS } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,9 +36,9 @@ export const SignUp = () => {
                 method: "POST",
                 body: formData,
             });
-            const res_data = await response.json();
-            if (response.ok) {               
-                // console.log(res_data);
+            if (response.ok) {
+                const res_data = await response.json();
+                // console.log(res_data.extraDetails);
                 console.log('Registration successfully');
                 storeTokenInLS(res_data.token);
                 navigate("/");
@@ -47,12 +47,23 @@ export const SignUp = () => {
                 setPhone('');
                 setPassword('');
                 setImage('');
-            } else if (response.status === 400) {
-                const errorData = await response.json();
-                console.log('Validation errors:', errorData);
-            } else {
-                console.error('Server error:', response.status);
+            } 
+            // else if (response.status === 400) {
+            //     const errorData = await response.json();
+            //     console.log('Validation errors:', errorData);
+            // }
+            else {
+                const errors = await response.json();
+                console.log(errors);
+                if (response.status && errors) {
+                    setError(errors);
+                    console.log(error.extraDetails); //it contains error now
+                }
             }
+            //  else {
+            //     alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+            //     // console.error('Server error:', response.status);
+            // }
         } catch (error) {
             console.log(error);
         }
@@ -60,10 +71,10 @@ export const SignUp = () => {
 
     return (
         <>
-        <Helmet bodyAttributes={{ style: 'background-color :rgb(237 238 239) ' }} />
+            <Helmet bodyAttributes={{ style: 'background-color :rgb(237 238 239) ' }} />
 
-<Navbar />
-            <div className="container">
+            <Navbar />
+            <div class="container">
                 <div className="container">
                     <div className="row">
                         {/* <div className="col-md-4"></div> */}
@@ -71,6 +82,9 @@ export const SignUp = () => {
                             <div className="form container" style={{ marginTop: "50px", marginBottom: "50px", border: "white", backgroundColor: "white" }}>
                                 <h4 className="text-center">Sign Up</h4>
                                 <hr className="mx-auto" />
+                                <p className="text-danger">
+                                    {error.extraDetails}
+                                </p>
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-group row">
                                         <div className="col-sm-12">

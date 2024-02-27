@@ -2,41 +2,19 @@
     --teal: #141b74;
     --teal_hover: #0c235f;
   }
-  
-  /* *{
-      font-family: 'Poppins', sans-serif;
-  } */
-  /* .h-font{
-      font-family: 'Merienda', cursive;
-  }
-  
-  .booker-font{
-    font-family: 'Playfair Display', serif;
-  }
-  .go-font{
-    font-family: 'Great vibes', cursive;
-  } */
-  /* To hide number arrows -> Chrome, Safari, Edge, Opera */
+ 
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button{
       -webkit-appearance: none;
       margin: 0;
   }
-  /* Firefox */
-  /* input[type=number]{
-      -moz-appearance: textfield;
-  } */
   .custom-bg{
     background-color: var(--teal);
     border: 1px solid var(--teal);
-    /* background-color: #1d4884;
-    border: 1px solid #2e6bc1; */
   }
   .custom-bg:hover{
     background-color: var(--teal_hover);
     border: 1px solid var(--teal_hover);
-    /* background-color: #0d2664;
-    border: 1px solid #113183; */
   }
   .h-line{
     width: 150px;
@@ -58,7 +36,6 @@
   
   .sticky-top{
     background-color: #1F4959;
-    /* background-color: #5C7C89; */
   }
   
   /* width */
@@ -92,22 +69,5 @@
     background-color: black;
   }
 
-
-  .nav-item .nav-link {
-    padding-left: 0.8rem;
-    margin-bottom: -8px;
-    height: 2.7rem;
-    margin-top: -4px;
-    width: 15.45vw;
-    margin-left: -1.7rem;
-    font-size: 16px;
-    font-weight: none;
-    font-family: "Montserrat", sans-serif;
-  }
-
-  /* .links.clicked {
-    background-color: rgb(48, 48, 246);
-    border-radius: 5px;
-  } */
   
   

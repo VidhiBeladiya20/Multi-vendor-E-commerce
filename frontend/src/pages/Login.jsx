@@ -15,9 +15,9 @@ export const Login = () => {
         email: '',
         password: '',
     });
-
+    const [error, setError] = useState({});
     const navigate = useNavigate();
-    const {storeTokenInLS} = useAuth();
+    const { storeTokenInLS } = useAuth();
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -32,24 +32,32 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/user/login`,{
-                method:"POST",
+            const response = await fetch(`http://localhost:5000/user/login`, {
+                method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
             })
-            console.log("login page",response);
-            if(response.ok){
+            console.log("login page", response);
+            // console.log(res_data);
+            if (response.ok) {
                 const res_data = await response.json();
                 // console.log(res_data);
                 console.log("login successfull");
-                setFormData({email:"",password:""})
+                setFormData({ email: "", password: "" })
                 storeTokenInLS(res_data.token)
                 navigate("/");
-            }else{
-                console.log("hello");
-            }
+            } else {
+                const errors = await response.json();
+                // console.log(errors.message);
+                if (response.status === 400 && errors) {
+                  setError(errors); 
+                  console.log(error.extraDetails); //it contains error now
+                } else {
+                  alert(errors.extraDetails || 'Inavalid Credentials');
+                }
+              }
         } catch (error) {
             console.log(error);
         }
@@ -68,6 +76,9 @@ export const Login = () => {
                             <div className="form container" style={{ marginTop: "50px", marginBottom: "50px", border: "white", backgroundColor: "white" }}>
                                 <h4 className="text-center">Sign In</h4>
                                 <hr className="mx-auto" />
+                                    <p className="text-danger">
+                                    {error.extraDetails}
+                                    </p>
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-group row ">
                                         <div className="col-sm-12">
@@ -99,6 +110,7 @@ export const Login = () => {
                                                 className="form-control shadow-none"
                                                 style={{ height: "42px", fontSize: "14px" }}
                                             />
+                                             
                                             {/* {
                                                 visible ? (
                                                     <AiOutlineEye
