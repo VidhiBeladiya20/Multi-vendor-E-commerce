@@ -1,4 +1,5 @@
 import "../../public/assets/css/admin.css";
+import { Link } from "react-router-dom";
 
 export const Admin = () => {
     return(
@@ -18,7 +19,7 @@ export const Admin = () => {
         <div className="collapse navbar-collapse flex-column align-items-stretch mt-2" id="adminDropdown">
           <ul className="nav nav-pills flex-column">
             <li className="nav-item">
-              <a className="nav-link text-white" href="#">Dashboard</a>
+              <Link className="nav-link text-white active" to="/admin" >Dashboard</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link text-white" href="users.php">Users</a>

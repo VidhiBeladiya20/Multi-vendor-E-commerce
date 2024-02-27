@@ -80,4 +80,14 @@
       margin-top: 60px;
     }
   }
+
+  .clicked {
+    background-color: blue; 
+  }
+
+  .active {
+    width: 15.45vw;
+    margin-left: -1.7rem;
+  }
+  
   
