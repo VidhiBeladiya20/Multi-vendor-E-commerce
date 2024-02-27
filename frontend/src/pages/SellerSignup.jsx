@@ -42,15 +42,6 @@ export const SellerSignup = () => {
     const [desc,setDesc] = useState('');
     const [method,setMethod] = useState('');
 
-    // const handleInput = (e) => {
-    //     // console.log(e);
-    //     const { name, value, files } = e.target;
-    //     setFormData((prevData) => ({
-    //         ...prevData,
-    //         [name]: files ? files[0].name : value,
-    //     }));
-    // };
-
     const formData = new FormData()
         formData.append('username',username);
         formData.append('email',email);
