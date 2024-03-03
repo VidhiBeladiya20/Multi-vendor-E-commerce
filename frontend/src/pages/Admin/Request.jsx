@@ -27,11 +27,13 @@ const Request = () => {
     getRequest();
   }, [])
 
-
+  const [selectedRequest, setSelectedRequest] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = () => {
+  const openModal = (value) => {
+    setSelectedRequest(value);
     setShowModal(true);
+
   };
 
   const closeModal = () => {
@@ -87,7 +89,8 @@ const Request = () => {
                     {/* <p>{record.name}</p> */}
 
                     {/* Button to open modal */}
-                    <button onClick={openModal}>Open Modal</button>
+                    <button onClick={()=>openModal(value)}>Open Modal</button>
+                    {/* <button onClick={openModal}>Open Modal</button> */}
 
                     {/* Modal */}
                     {showModal && (
@@ -95,13 +98,13 @@ const Request = () => {
                         <div className="modal-dialog">
                           <div className="modal-content">
                             <div className="modal-header">
-                              <h5 className="modal-title">{username}</h5>
+                              <h5 className="modal-title">{selectedRequest.username}</h5>
                               {/* <h5 className="modal-title">{record.name} Details</h5> */}
                               <button type="button" className="btn-close" onClick={closeModal}></button>
                             </div>
                             <div className="modal-body">
                               {/* Display record details */}
-                              <p>{email}</p>
+                              <p>{selectedRequest.email}</p>
                               {/* <p>{record.description}</p> */}
                             </div>
                             <div className="modal-footer">
