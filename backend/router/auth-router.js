@@ -16,6 +16,8 @@ router.route("/login").post(validate(loginSchema),controller.login);
 
 router.route("/user").get(authMiddleware, controller.user);
 
+router.route("/otp").post(controller.otp);
+
 router.route("/forgot-password").post(controller.forgotPassword);
 
 router.route("/reset-password/:id/:token").post(controller.resetPassword);

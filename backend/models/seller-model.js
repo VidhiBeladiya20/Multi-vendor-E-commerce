@@ -74,6 +74,10 @@ const sellerSchema=new mongoose.Schema({
     status:{
         type:String,
         default:"Decline"
+    },
+    isActive:{
+        type:String,
+        default:"false"
     }
 });
 

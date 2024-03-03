@@ -27,6 +27,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         default:"user"
     },
+    isActive:{
+        type:String,
+        default:"false"
+    }
 });
 
 userSchema.pre("save",async function(next){
